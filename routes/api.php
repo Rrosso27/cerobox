@@ -24,9 +24,21 @@ Route::namespace('App\\Http\\Controllers')->group(function () {
     Route::controller(CustomersController::class)->group(function () {
         // Route::middleware(['first', 'customers'])->group(function () {
             Route::post('create','validator');
-            Route::delete('/delecte/{id}','delecte');
+            Route::delete('/delecte/{id}','delete');
 
         // });
     });
+
+
+    Route::controller(ServicesController::class)->group(function () {
+
+        // Route::middleware(['first', 'services'])->group(function () {
+            Route::post('services/create','validator');
+            Route::delete('services/delete/{id}','delete');
+
+        // });
+
+    });
+
     
 });
