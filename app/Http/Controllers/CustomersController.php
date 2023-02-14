@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customers;
+use ServicesController;
 use Validator, DB;
 
 class CustomersController extends Controller
@@ -163,14 +164,13 @@ class CustomersController extends Controller
     }
 
 
-    public function delecte($id)
+    public   function delete($id)
     {
 
         try {
 
-            $yegua = Customers::find($id);
-            // $yegua->()->delete();
-            $yegua->delete();
+            $customers = Customers::find($id);
+            $customers->delete();
 
             $message = [
                 "type" => "succes",
@@ -181,7 +181,7 @@ class CustomersController extends Controller
         } catch (\Throwable $th) {
             $message = [
                 "type" => "error",
-                "message" => "Fallo de sistema ",
+                "message" => $th,
             ];
         }
 

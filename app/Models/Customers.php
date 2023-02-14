@@ -18,4 +18,9 @@ class Customers extends Model
         "telephone",
         "observations"
     ];
+
+    //Relación de 1 a muchos 
+    public function services () {
+        return $this->hasMany('App\Models\Services');
+    }
 }
