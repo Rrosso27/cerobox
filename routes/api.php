@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::namespace('App\\Http\\Controllers')->group(function () {
+    //UsersController
+    Route::controller(CustomersController::class)->group(function () {
+        // Route::middleware(['first', 'customers'])->group(function () {
+            Route::post('create','validator');
+            Route::delete('/delecte/{id}','delecte');
+
+        // });
+    });
+    
+});
