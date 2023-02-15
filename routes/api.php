@@ -25,6 +25,10 @@ Route::namespace('App\\Http\\Controllers')->group(function () {
         // Route::middleware(['first', 'customers'])->group(function () {
             Route::post('create','validator');
             Route::delete('/delecte/{id}','delete');
+            Route::get('/index','index');
+            Route::get('services/indexById/{id}','indexById');
+
+            
 
         // });
     });
@@ -36,6 +40,10 @@ Route::namespace('App\\Http\\Controllers')->group(function () {
             Route::post('services/create','validator');
             Route::delete('services/delete/{id}','delete');
 
+
+            
+
+            
         // });
 
     });

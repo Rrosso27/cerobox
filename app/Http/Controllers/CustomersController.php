@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customers;
 use ServicesController;
 use Validator, DB;
+use Inertia\Inertia;
 
 class CustomersController extends Controller
 {
@@ -14,6 +15,12 @@ class CustomersController extends Controller
     public function index()
     {
         $customers = Customers::all();
+        return Inertia::render('Customers/index', ['customers' => $customers]);
+    }
+
+    public function indexById($id){
+        $customers = Customers::select('*')->where('id',$id)->first();
+         return response()->json($customers);
     }
 
 
@@ -30,6 +37,7 @@ class CustomersController extends Controller
             $email = $request->input('email');
             $telephone = $request->input('telephone');
             $observations = $request->input('observations');
+            $img = $request->input('img');
 
             $validator = Validator::make(
                 $request->all(),
@@ -55,6 +63,7 @@ class CustomersController extends Controller
                     'email' => $email,
                     'telephone' => $telephone,
                     'observations' => $observations,
+                    'img' => $img
                 ];
 
                 if (($this->validateEmail($email) || $this->validateDocument($document)) && $id == "") {
@@ -84,7 +93,7 @@ class CustomersController extends Controller
             ];
         }
 
-        return response()->json($message);
+        return redirect('customers');
 
     }
 
@@ -136,6 +145,7 @@ class CustomersController extends Controller
                     'email' => $data['email'],
                     'telephone' => $data['telephone'],
                     'observations' => $data['observations'],
+                    'img' => $data['img']
                 ]
             );
 
@@ -156,6 +166,7 @@ class CustomersController extends Controller
                 'email' => $data['email'],
                 'telephone' => $data['telephone'],
                 'observations' => $data['observations'],
+                'img' => $data['img']
             ]);
             return true;
         } catch (\Throwable $th) {
@@ -164,7 +175,7 @@ class CustomersController extends Controller
     }
 
 
-    public   function delete($id)
+    public function delete($id)
     {
 
         try {
@@ -185,8 +196,9 @@ class CustomersController extends Controller
             ];
         }
 
+        return redirect('customers')->with(compact($message));
 
-        return response()->json($message);
+        // return response()->json($message);
     }
 
 

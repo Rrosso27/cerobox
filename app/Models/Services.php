@@ -21,7 +21,8 @@ class Services extends Model
     ];
 
     //Relación de muchos a 1 
-    public function customers() {
-        return $this->belongsTo('App\Models\Customers','customer_id');
+    public function customers()
+    {
+        return $this->belongsTo('App\Models\Customers', 'customer_id');
     }
 }
