@@ -16,7 +16,8 @@ class Customers extends Model
         "document",
         "email",
         "telephone",
-        "observations"
+        "observations",
+        "img"
     ];
 
     //Relación de 1 a muchos 

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->require();
             $table->string('document')->require();
+            $table->string('img')->require();
+
             $table->string('email')->require();
             $table->string('telephone')->require();
             $table->string('observations')->require();
